@@ -1,8 +1,6 @@
 'use strict'
 
-const parseInput = input => {
-	return input.split('\n\n').map(l => l.split('\n').map(v => parseInt(v)))
-}
+const parseInput = input => input.split('\n\n').map(l => l.split('\n').map(v => parseInt(v)))
 
 const solve = (tops, input) => parseInput(input).reduce((acc, cur) => {
 		acc.push(cur.reduce((a, c) => a + c, 0))
