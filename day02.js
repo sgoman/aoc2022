@@ -28,20 +28,14 @@ const chosen = {
 
 const evaluate = (their, mine) => outcomes[`${their}${mine}`]
 
-const parseInput = input => {
-    return input.split('\n').map(l => l.split(' '))
-}
+const parseInput = input => input.split('\n').map(l => l.split(' '))
 
-const solve = (isPart2, input) => {
-    return parseInput(input).reduce((acc, [their, mine]) => acc + worth[isPart2 ? chosen[`${their}${mine}`] : mine] + evaluate(their, isPart2 ? chosen[`${their}${mine}`] : mine), 0)
-}
+const solve = (isPart2, input) => parseInput(input)
+	.reduce((acc, [their, mine]) =>
+		acc + worth[isPart2 ? chosen[`${their}${mine}`] : mine] + evaluate(their, isPart2 ? chosen[`${their}${mine}`] : mine), 0)
 
-const part1 = input => {
-    return solve(false, input)
-}
+const part1 = input => solve(false, input)
 
-const part2 = input => {
-    return solve(true, input)
-}
+const part2 = input => solve(true, input)
 
 module.exports = { part1, part2 }
