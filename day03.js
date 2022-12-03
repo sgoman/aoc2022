@@ -7,26 +7,23 @@ const part1 = input => input.split('\n')
         .reduce((a, c) => {
             for(const s of c[0].split('')) {
                 if (c[1].indexOf(s) != -1) {
-                    a.push(s)
-                    break
+                    return a + worth.indexOf(s)
                 }
             }
-            return a
-        }, []) 
-        .reduce((a, c) => a + worth.indexOf(c), 0)
+        }, 0) 
 
 const part2 = input => {
     const sacks = input.split('\n')
-    const badges = []
+    let badges = 0 
     for (let i = 0; i < sacks.length; i += 3){
         for (const s of worth.split('')) {
             if (sacks[i].indexOf(s) != -1 && sacks[i + 1].indexOf(s) != -1 && sacks[i + 2].indexOf(s) != -1) {
-                badges.push(s)
+                badges += worth.indexOf(s)
                 break
             }
         }
     }
-    return badges.reduce((a, c) => a + worth.indexOf(c), 0)
+    return badges
 }
 
 module.exports = { part1, part2 }
