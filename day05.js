@@ -21,19 +21,9 @@ const readConfig = input => {
 const crane = (input, isPart2) => {
     const [stacks, moves] = parseInput(input)
     for (const [amount, source, target] of moves) {
-        if (isPart2) {
-            const tmp = []
-            for (let a = 0; a < amount; a++) {
-                tmp.push(stacks[source].pop())
-            }
-            while (tmp.length) {
-                stacks[target].push(tmp.pop())
-            }
-        } else {
-            for (let a = 0; a < amount; a++) {
-                stacks[target].push(stacks[source].pop())
-            }
-        }
+        const tmp = stacks[source].splice(stacks[source].length - amount, amount)
+        if (isPart2) tmp.reverse()
+        stacks[target].push(...tmp)
     }
     return stacks.reduce((acc, cur) => acc + ((cur.length) ? cur.pop() : ''), '')
 }
