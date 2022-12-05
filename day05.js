@@ -1,21 +1,25 @@
 'use strict'
 
-const parseInput = input => input.split('\n').filter(f => f.startsWith('move')).map(l => Array.from(l.matchAll(/\d+/g)).map(v => parseInt(v[0])))
-
-const generateStartConfig = () => [
-    [],
-    ['S', 'Z', 'P', 'D', 'L', 'B', 'F', 'C'],
-    ['N', 'V', 'G', 'P', 'H', 'W', 'B'],
-    ['F', 'W', 'B', 'J', 'G'],
-    ['G', 'J', 'N', 'F', 'L', 'W', 'C', 'S'],
-    ['W', 'J', 'L', 'T', 'P', 'M', 'S', 'H'],
-    ['B', 'C', 'W', 'G', 'F', 'S'],
-    ['H', 'T', 'P', 'M', 'Q', 'B', 'W'],
-    ['F', 'S', 'W', 'T'],
-    ['N', 'C', 'R']
+const parseInput = input => [
+    readConfig(input.split('\n')),
+    input.split('\n').filter(f => f.startsWith('move')).map(l => Array.from(l.matchAll(/\d+/g)).map(v => parseInt(v[0])))
 ]
 
-const crane = (stacks, moves, isPart2) => {
+const readConfig = input => {
+    const stacks = [[],[],[],[],[],[],[],[],[],[]]
+    for (const l of input.filter(f => f.startsWith('[')).reverse()) {
+        const m = [...l.matchAll(/^.(.)...(.)...(.)...(.)...(.)...(.)...(.)...(.)...(.).$/g)]
+        for (let i = 1; i < 10; i++) {
+            if (m[0][i].search(/[A-Z]/) != -1) {
+                stacks[i].push(m[0][i])
+            }
+        }
+    }
+    return stacks
+}
+
+const crane = (input, isPart2) => {
+    const [stacks, moves] = parseInput(input)
     for (const [amount, source, target] of moves) {
         if (isPart2) {
             const tmp = []
@@ -31,17 +35,11 @@ const crane = (stacks, moves, isPart2) => {
             }
         }
     }
-    let ret = ''
-    for(const stack of stacks) {
-        if (stack.length) {
-            ret += stack.pop()
-        }
-    }
-    return ret
+    return stacks.reduce((acc, cur) => acc + ((cur.length) ? cur.pop() : ''), '')
 }
 
-const part1 = input => crane(generateStartConfig(), parseInput(input), false)
+const part1 = input => crane(input, false)
 
-const part2 = input => crane(generateStartConfig(), parseInput(input), true)
+const part2 = input => crane(input, true)
 
 module.exports = { part1, part2 }
