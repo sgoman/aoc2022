@@ -3,8 +3,7 @@
 const solve = (s, input) => {
     const chars = input.trim().split('')
     for (let i = 0, l = chars.length; i < l - s; i++) {
-        const check = new Set(chars.slice(i, i + s))
-        if (check.size == s) return i + s
+        if (new Set(chars.slice(i, i + s)).size == s) return i + s
     }
 }
 
