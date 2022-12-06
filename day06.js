@@ -1,9 +1,7 @@
 'use strict'
 
-const parseInput = input => input.trim().split('')
-
 const solve = (s, input) => {
-    const chars = parseInput(input)
+    const chars = input.trim().split('')
     for (let i = 0, l = chars.length; i < l - s; i++) {
         const check = new Set(chars.slice(i, i + s))
         if (check.size == s) return i + s
