@@ -2,8 +2,8 @@
 
 const solve = (s, input) => {
     const chars = input.trim().split('')
-    for (let i = 0, l = chars.length; i < l - s; i++) {
-        if (new Set(chars.slice(i, i + s)).size == s) return i + s
+    for (let i = s, l = chars.length; i < l; i++) {
+        if (new Set(chars.slice(i - s, i)).size == s) return i
     }
 }
 
