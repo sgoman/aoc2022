@@ -1,31 +1,17 @@
 'use strict'
 
-const parseInput = input => {
-    return input.trim().split('')
-}
+const parseInput = input => input.trim().split('')
 
-const solve = (isPart2, input) => {
-    return input
-}
-
-const part1 = input => {
+const solve = (s, input) => {
     const chars = parseInput(input)
-    for (let i = 0, l = chars.length; i < l - 4; i++) {
-        const check = new Set(chars.slice(i, i + 4))
-        if (check.size == 4) {
-            return i + 4
-        }
+    for (let i = 0, l = chars.length; i < l - s; i++) {
+        const check = new Set(chars.slice(i, i + s))
+        if (check.size == s) return i + s
     }
 }
 
-const part2 = input => {
-    const chars = parseInput(input)
-    for (let i = 0, l = chars.length; i < l - 14; i++) {
-        const check = new Set(chars.slice(i, i + 14))
-        if (check.size == 14) {
-            return i + 14
-        }
-    }
-}
+const part1 = input => solve(4, input)
+
+const part2 = input => solve(14, input)
 
 module.exports = { part1, part2 }
