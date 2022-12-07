@@ -7,11 +7,7 @@ const solve = (isPart2, input) => {
 		const words = l.trim().split(' ')
 		if (words[0] == '$') {
 			if (words[1] == 'cd') {
-				if (words[2] == '..') {
-					path.pop()
-				} else {
-					path.push(words[2])
-				}
+				(words[2] == '..') ? path.pop() : path.push(words[2])
 			}
 		} else if (words[0] != 'dir') {
 			const size = parseInt(words[0])
