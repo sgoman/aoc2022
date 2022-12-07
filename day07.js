@@ -33,12 +33,8 @@ const solve = (isPart2, input) => {
 		: Object.values(sizes).filter(f => f <= 100000).reduce((a, c) => a + c, 0)
 }
 
-const part1 = input => {
-  return solve(false, input)
-}
+const part1 = input => solve(false, input)
 
-const part2 = input => {
-  return solve(true, input)
-}
+const part2 = input => solve(true, input)
 
 module.exports = { part1, part2 }
