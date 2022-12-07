@@ -5,17 +5,15 @@ const solve = (isPart2, input) => {
 	const path = []
 	input.trim().split('\n').forEach(l => {
 		const words = l.trim().split(' ')
-		if (words[0] == '$' && words[1] == 'cd') {
-			if (words[2] == '..') {
-				path.pop()
-			} else {
-				path.push(words[2])
+		if (words[0] == '$') {
+			if (words[1] == 'cd') {
+				if (words[2] == '..') {
+					path.pop()
+				} else {
+					path.push(words[2])
+				}
 			}
-		} else if (words[0] == '$' && words[1] == 'ls') {
-			// ignore
-		} else if (words[0] == 'dir') {
-			// ignore
-		} else {
+		} else if (words[0] != 'dir') {
 			const size = parseInt(words[0])
 			for (let i = 0; i < path.length; i++) {
 				let dir = path.slice(0, i + 1).join('/')
