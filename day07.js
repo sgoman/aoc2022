@@ -18,7 +18,8 @@ const solve = (isPart2, input) => {
 		} else {
 			const size = parseInt(words[0])
 			for (let i = 0; i < path.length; i++) {
-				const dir = path.slice(0, i + 1).join('/')
+				let dir = path.slice(0, i + 1).join('/')
+				if (dir.length > 1) dir = dir.substring(1)
 				if (!sizes.hasOwnProperty(dir)) sizes[dir] = 0
 				sizes[dir] += size
 			}
