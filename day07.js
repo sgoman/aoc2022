@@ -27,18 +27,10 @@ const solve = (isPart2, input) => {
 	})
 
 	const needed = sizes['/'] - (70000000 - 30000000)
-	let result = (isPart2) ? Infinity : 0
 
-	for (const v of Object.values(sizes)) {
-		if (!isPart2 && v <= 100000) {
-			result += v
-		}
-		if (isPart2 && v >= needed) {
-			result = Math.min(result, v)
-		}
-	}
-
-	return result
+	return isPart2
+		? Math.min(...Object.values(sizes).filter(f => f >= needed))
+		: Object.values(sizes).filter(f => f <= 100000).reduce((a, c) => a + c, 0)
 }
 
 const part1 = input => {
