@@ -1,9 +1,7 @@
 'use strict'
 
-const parseInput = input => input.split('\n').map(l => l.split('').map(Number))
-
 const solve = (isPart2, input) => {
-    const grid = parseInput(input)
+    const grid = input.split('\n').map(l => l.split('').map(Number))
     const h = grid.length, w = grid[0].length
     const dirs = [ [0, -1], [1, 0], [0, 1], [-1, 0] ]
     let result = 0
