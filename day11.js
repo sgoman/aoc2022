@@ -1,8 +1,7 @@
 'use strict'
 
-const parseInput = input => {
-    return input.split('\n\n').map(b => {
-        const m = {"id": null, "items": [], "operand": null, "amount": null, "divisible": null, "positive": null, "negative": null}
+const parseInput = input => input.split('\n\n').map(b => {
+        const m = {}
         const l = b.split('\n')
         m.id = [...l[0].matchAll(/\d+/g)].map(p => parseInt(p[0]))[0]
         m.items = [...l[1].matchAll(/\d+/g)].map(p => parseInt(p[0]))
@@ -14,7 +13,6 @@ const parseInput = input => {
         m.negative = parseInt(l[5].trim().split(' ')[5])
         return m
     })
-}
 
 const solve = (isPart2, input) => {
     let inspected = new Array(input.length).fill(0)
@@ -40,12 +38,8 @@ const solve = (isPart2, input) => {
     return inspected[0] * inspected[1]
 }
 
-const part1 = input => {
-  return solve(false, parseInput(input))
-}
+const part1 = input => solve(false, parseInput(input))
 
-const part2 = input => {
-  return solve(true, parseInput(input))
-}
+const part2 = input => solve(true, parseInput(input))
 
 module.exports = { part1, part2 }
