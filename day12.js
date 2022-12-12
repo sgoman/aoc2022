@@ -1,7 +1,6 @@
 'use strict'
 
-const parseInput = input => {
-    return input.split('\n').reduce((acc, cur, row) => {
+const parseInput = input => input.split('\n').reduce((acc, cur, row) => {
         const startcol = cur.indexOf('S'), endcol = cur.indexOf('E')
         if (startcol != -1) {
             acc.start = [row, startcol]
@@ -14,19 +13,15 @@ const parseInput = input => {
         acc.heightmap.push(cur.split('').map(c => c.charCodeAt(0) - 96))
         return acc
     }, {"start": null, "end": null, "heightmap": []})
-}
 
 const solve = (isPart2, input) => {
     const h = input.heightmap.length, w = input.heightmap[0].length
     const q = [], s = new Set()
     if (isPart2) {
-        for (let r = 0; r < h; r++) {
-            for (let c = 0; c < w; c++) {
-                if (input.heightmap[r][c] == 1) {
+        for (let r = 0; r < h; r++)
+            for (let c = 0; c < w; c++)
+                if (input.heightmap[r][c] == 1)
                     q.push([[r, c], 0])
-                }
-            }
-        }
     } else {
         q.push([input.start, 0])
     }
@@ -44,12 +39,8 @@ const solve = (isPart2, input) => {
     }
 }
 
-const part1 = input => {
-  return solve(false, parseInput(input))
-}
+const part1 = input => solve(false, parseInput(input))
 
-const part2 = input => {
-  return solve(true, parseInput(input))
-}
+const part2 = input => solve(true, parseInput(input))
 
 module.exports = { part1, part2 }
