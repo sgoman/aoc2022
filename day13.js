@@ -1,11 +1,11 @@
 'use strict'
 
 const compare = (a, b) => {
-    if (typeof a === 'number' && typeof b === 'number') return a - b
+    if (typeof a == 'number' && typeof b == 'number') return a - b
 
-    if (typeof a === 'number') {
+    if (typeof a == 'number') {
         a = [a]
-    } else if (typeof b === 'number') {
+    } else if (typeof b == 'number') {
         b = [b]
     }
 
@@ -21,7 +21,7 @@ const compare = (a, b) => {
 const part1 = input => input
     .split('\n\n')
     .map(l => l.split('\n').map(JSON.parse))
-    .map(([a, b]) => +(compare(a, b) <= 0))
+    .map(([a, b]) => compare(a, b) <= 0)
     .map((c, i) => c * (i + 1))
     .reduce((acc, cur) => acc + cur)
 
