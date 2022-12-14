@@ -83,8 +83,7 @@ const solve = (isPart2, input) => {
 		console.log(grid[r].slice(minx - 1, maxx + 2).join(''))
 	}
 
-	return step - 1
-	return {minx, maxx, miny, maxy}
+	return step - !isPart2
 }
 
 const part1 = input => {
